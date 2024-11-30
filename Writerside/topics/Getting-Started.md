@@ -7,6 +7,7 @@ Instructions on how to do this can be found [here](https://learn.microsoft.com/e
 You'll need to follow the steps up through setting the VCPKG_ROOT environment variable.
 
 ### Note for Linux Builds {collapsible="true"}
+
 If you intend to use Amphora's audio system on Linux, you'll need to ensure that the headers for your sound system are installed _before_ vcpkg builds SDL2_mixer.
 This can be accomplished using the following command on Debian/Ubuntu based systems:
 ```Bash
