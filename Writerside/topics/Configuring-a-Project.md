@@ -35,6 +35,7 @@ An example completed keymap section could look as follows:
     KMAP(up, w, DPAD_UP) \
     KMAP(down, s, DPAD_DOWN)
 ```
+Note that this only sets the default keymap, it is possible to remap keys, and the procedure for doing so is documented later on in the manual.
 
 ### Expert Options {collapsible="true"}
 
