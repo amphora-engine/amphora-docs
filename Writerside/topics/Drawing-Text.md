@@ -20,7 +20,7 @@ The first thing you'll want to do is create a new `AmphoraString *` set to `NULL
 
 The `AmphoraString` pointer will be used with the `create_string` function which has the following signature:
 ```C
-AmphoraString *create_string(AmphoraString **msg, const char *name, int pt, int x, int y, int order, SDL_Color color, const char *text, bool stationary)
+AmphoraString *create_string(AmphoraString **msg, const char *name, int pt, int x, int y, int order, SDL_Color color, const char *text, bool stationary);
 ```
 Creating an `AmphoraString` with `create_string` will automatically add that string to the render list to be displayed.
 
@@ -50,7 +50,7 @@ A non-stationary string is fixed to an actual coordinate in the game world, and 
 
 Freeing an `AmphoraString` when you no longer need it is accomplished with the `free_string` function which has the following signature:
 ```C
-void free_string(AmphoraString **msg)
+void free_string(AmphoraString **msg);
 ```
 In our example, the call would be as follows:
 ```C
