@@ -25,7 +25,7 @@ First, you'll create an `AmphoraImage` pointer and ensure it's set to `NULL`.
 </tabs>
 Sprites are created using the `create_sprite` function:
 ```C
-AmphoraImage *create_sprite(AmphoraImage **spr, const char *image_name, Sint32 x, Sint32 y, Uint8 scale, bool flip, bool stationary, Sint32 order);
+AmphoraImage *create_sprite(AmphoraImage **spr, const char *image_name, float x, float y, float scale, bool flip, bool stationary, Sint32 order);
 ```
 Creating an `AmphoraImage` with `create_sprite` will automatically add it to the render list to be displayed.
 
@@ -54,7 +54,7 @@ For example, a health display would be stationary, an enemy monster would not.
 Once an `AmphoraImage` is created, you'll need to add a frameset to it.
 This is done with the `add_frameset` function:
 ```C
-void add_frameset(AmphoraImage *spr, const char *name, Sint32 sx, Sint32 sy, Sint32 w, Sint32 h, Sint32 off_x, Sint32 off_y, Uint16 num_frames, Uint16 delay);
+void add_frameset(AmphoraImage *spr, const char *name, Sint32 sx, Sint32 sy, Sint32 w, Sint32 h, float off_x, float off_y, Uint16 num_frames, Uint16 delay);
 ```
 
 ### Description of Parameters {id="params_frameset"}
@@ -76,7 +76,7 @@ One would use `off_x` here to maintain the proper position when switching betwee
 - The `num_frames` parameter specifies the  number of frames in the animation.
 These will be read sequentially, left-to-right from the spritesheet, starting from the initial frame specified by `sx`, `sy`, `w`, and `h`.
 If your frameset is a static image that is not animated, you would set this to 1.
-- The `delay` parameter specifies the number of frames between each animation frame change.
+- The `delay` parameter specifies the number of milliseconds between each animation frame change.
 If your frameset is a static image that is not animated, this value does not matter and can just be set to 0.
 
 ## Selecting Framesets
