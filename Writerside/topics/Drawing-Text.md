@@ -18,11 +18,11 @@ The first thing you'll want to do is create a new `AmphoraString *` set to `NULL
     </tab>
 </tabs>
 
-The `AmphoraString` pointer will be used with the `create_string` function which has the following signature:
+The `AmphoraString` pointer will be used with the `Amphora_CreateString` function which has the following signature:
 ```C
-AmphoraString *create_string(AmphoraString **msg, const char *name, int pt, float x, float y, int order, SDL_Color color, const char *text, bool stationary);
+AmphoraString *Amphora_CreateString(AmphoraString **msg, const char *name, int pt, float x, float y, int order, SDL_Color color, const char *text, bool stationary);
 ```
-Creating an `AmphoraString` with `create_string` will automatically add that string to the render list to be displayed.
+Creating an `AmphoraString` with `Amphora_CreateString` will automatically add that string to the render list to be displayed.
 
 ### Description of parameters
 
@@ -48,14 +48,14 @@ A non-stationary string is fixed to an actual coordinate in the game world, and 
 
 ## Freeing Strings
 
-Freeing an `AmphoraString` when you no longer need it is accomplished with the `free_string` function which has the following signature:
+Freeing an `AmphoraString` when you no longer need it is accomplished with the `Amphora_FreeString` function which has the following signature:
 ```C
-void free_string(AmphoraString **msg);
+void Amphora_FreeString(AmphoraString **msg);
 ```
 In our example, the call would be as follows:
 ```C
-free_string(&my_string);
+Amphora_FreeString(&my_string);
 ```
-The `free_string` automatically sets the `AmphoraImage` pointer back to a null pointer for you after freeing the resources.
+The `Amphora_FreeString` function automatically sets the `AmphoraString` pointer back to a null pointer for you after freeing the resources.
 
-It is only necessary to call `free_string` on any strings you no longer want to be displayed, Amphora will automatically call `free_string` on any remaining strings as part of its shutdown routine.
+It is only necessary to call `Amphora_FreeString` on any strings you no longer want to be displayed, Amphora will automatically call `Amphora_FreeString` on any remaining strings as part of its shutdown routine.

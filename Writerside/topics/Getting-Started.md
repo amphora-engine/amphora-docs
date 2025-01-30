@@ -16,38 +16,16 @@ sudo apt install libasound2-dev libpulse-dev
 
 ## Getting the Engine
 
-Amphora is distributed in source form, so any new project should be started by cloning the Amphora repository:
+Amphora is distributed in source form.
+Releases can be downloaded as a tarball from the GitHub releases, or you can clone the latest dev branch:
 ```Bash
 git clone https://github.com/calebstein1/amphora
 ```
 The `src` directory is where code files are found, `include` is for headers, and `content` is for any assets your game will need.
 The engine source and header files are located in `src/engine` and `include/engine` respectively.
 
-The most basic, barebones project is one file in `src` containing the following content:
-<tabs>
-    <tab title="C">
-        <code-block lang="C">
-            #include "engine/amphora.h"&#xA;
-            void game_init(void) {
-            }&#xA;
-            void game_loop(Uint64 frame, const struct input_state_t *key_actions) {
-            }&#xA;
-            void game_shutdown(void) {
-            }
-        </code-block>
-    </tab>
-    <tab title="C++">
-        <code-block lang="C++">
-            #include "engine/amphora.h"&#xA;
-            void game_init() {
-            }&#xA;
-            void game_loop(Uint64 frame, const input_state_t *key_actions) {
-            }&#xA;
-            void game_shutdown() {
-            }
-        </code-block>
-    </tab>
-</tabs>
+Your game files should exist outside of the `engine` directories.
+Typically, you'll have multiple directories under `src` with which to organize your files (ie, `Scenes`, `Utils`, etc).
 
 ## Building the Project
 

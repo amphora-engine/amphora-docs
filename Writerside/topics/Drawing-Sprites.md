@@ -11,6 +11,7 @@ An object in your game might have many framesets attached to it, for example, id
 ## Creating Sprites
 
 First, you'll create an `AmphoraImage` pointer and ensure it's set to `NULL`.
+
 <tabs>
     <tab title="C">
         <code-block lang="C">
@@ -23,13 +24,14 @@ First, you'll create an `AmphoraImage` pointer and ensure it's set to `NULL`.
         </code-block>
     </tab>
 </tabs>
-Sprites are created using the `create_sprite` function:
-```C
-AmphoraImage *create_sprite(AmphoraImage **spr, const char *image_name, float x, float y, float scale, bool flip, bool stationary, Sint32 order);
-```
-Creating an `AmphoraImage` with `create_sprite` will automatically add it to the render list to be displayed.
 
-If `create_sprite` succeeds, the passed in `AmphoraImage` pointer will be set to the newly created `AmphoraImage`, and the pointer will be returned as well.
+Sprites are created using the `Amphora_CreateSprite` function:
+```C
+AmphoraImage *Amphora_CreateSprite(AmphoraImage **spr, const char *image_name, float x, float y, float scale, bool flip, bool stationary, Sint32 order);
+```
+Creating an `AmphoraImage` with `Amphora_CreateSprite` will automatically add it to the render list to be displayed.
+
+If `Amphora_CreateSprite` succeeds, the passed in `AmphoraImage` pointer will be set to the newly created `AmphoraImage`, and the pointer will be returned as well.
 If it fails, it will return `NULL` and the supplied pointer will not be modified.
 
 ### Description of Parameters {id="params_create_sprite"}
@@ -52,9 +54,9 @@ For example, a health display would be stationary, an enemy monster would not.
 ## Creating Framesets
 
 Once an `AmphoraImage` is created, you'll need to add a frameset to it.
-This is done with the `add_frameset` function:
+This is done with the `Amphora_AddFrameset` function:
 ```C
-void add_frameset(AmphoraImage *spr, const char *name, Sint32 sx, Sint32 sy, Sint32 w, Sint32 h, float off_x, float off_y, Uint16 num_frames, Uint16 delay);
+void Amphora_AddFrameset(AmphoraImage *spr, const char *name, Sint32 sx, Sint32 sy, Sint32 w, Sint32 h, float off_x, float off_y, Uint16 num_frames, Uint16 delay);
 ```
 
 ### Description of Parameters {id="params_frameset"}
@@ -81,20 +83,20 @@ If your frameset is a static image that is not animated, this value does not mat
 
 ## Selecting Framesets
 
-There are two methods to set the active frameset for an `AmphoraImage`: `set_frameset`, and `play_oneshot`.
+There are two methods to set the active frameset for an `AmphoraImage`: `Amphora_SetFrameset`, and `Amphora_PlayOneshot`.
 ```C
-void set_frameset(AmphoraImage *spr, const char *name);
-void play_oneshot(AmphoraImage *spr, const char *name, void (*callback)(void));
+void Amphora_SetFrameset(AmphoraImage *spr, const char *name);
+void Amphora_PlayOneshot(AmphoraImage *spr, const char *name, void (*callback)(void));
 ```
 In both of these, `spr` is the `AmphoraImage` and `name` is the name of the frameset that's previously been created.
 
-The difference between the two is that `set_frameset` will loop the animation, while `play_oneshot` will play the animation once, holding on the last frame, and will execute a supplied callback function once the animation finishes.
+The difference between the two is that `Amphora_SetFrameset` will loop the animation, while `Amphora_PlayOneshot` will play the animation once, holding on the last frame, and will execute a supplied callback function once the animation finishes.
 This callback function is a standard C function pointer to a function that takes no parameters and returns void, or it can be a non-trapping lambda if using C++.
 If you do not wish to execute a callback function, pass `NULL` in C or `nullptr` in C++.
 
 ## Freeing Sprites
 
-Freeing sprites is done with the `free_sprite` function:
+Freeing sprites is done with the `Amphora_FreeSprite` function:
 ```C
 void free_sprite(AmphoraImage **spr);
 ```
