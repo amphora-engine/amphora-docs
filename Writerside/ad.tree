@@ -10,7 +10,8 @@
     <toc-element topic="Getting-Started.md"/>
     <toc-element topic="Configuring-a-Project.md"/>
     <toc-element topic="Working-with-Binary-Resources.md"/>
-    <toc-element topic="Drawing-Text.md"/>
+	<toc-element topic="Working-with-Scenes.md"/>
+	<toc-element topic="Drawing-Text.md"/>
     <toc-element topic="Drawing-Sprites.md"/>
     <toc-element topic="Drawing-a-Tilemap.md"/>
     <toc-element topic="Getting-Input.md"/>
