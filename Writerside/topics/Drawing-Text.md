@@ -20,7 +20,7 @@ The first thing you'll want to do is create a new `AmphoraString *` set to `NULL
 
 The `AmphoraString` pointer will be used with the `Amphora_CreateString` function which has the following signature:
 ```C
-AmphoraString *Amphora_CreateString(const char *font_name, int pt, float x, float y, int order, SDL_Color color, const char *text, bool stationary);
+AmphoraString *Amphora_CreateString(const char *font_name, int pt, float x, float y, int order, SDL_Color color, bool stationary, const char *fmt, ...);
 ```
 Creating an `AmphoraString` with `Amphora_CreateString` will automatically add that string to the render list to be displayed.
 
@@ -38,11 +38,29 @@ With `stationary` set to true, positive `x` and `y` values will count from the l
 Higher numbers will be drawn on top of lower numbers.
 - The `color` parameter is the color of the text.
 This can be any `SDL_Color`, but is most commonly a color defined in `colors.h`.
-- The `text` parameter is the actual text to be drawn.
 - The `stationary` parameter determines whether the string is stationary or not.
 A stationary string will always be displayed at the same screen location no matter where the camera is.
 This is commonly used for things like a score display or a timer, or text within a dialog box.
 A non-stationary string is fixed to an actual coordinate in the game world, and would be commonly used for textual elements in the game environment (think billboards, signs, etc.).
+- The `fmt` parameter and following is the actual text to be drawn as a format string.
+
+## Updating String Text
+
+You can change the text of an `AmphoraString` using the `Amphora_UpdateStringText` function:
+```C
+AmphoraString *Amphora_UpdateStringText(AmphoraString *msg, const char *fmt, ...);
+```
+This will overwrite the old text with the new format string provided.
+
+## Changing the Number of Characters Displayed
+
+You can change how many characters of a string are displayed with the `Amphora_UpdateStringCharsDisplayed` function:
+```C
+AmphoraString *Amphora_UpdateStringCharsDisplayed(AmphoraString *msg, size_t n);
+```
+This will display only the first 'n' characters of the string.
+Passing 0 for `n` will cause the entire string to be displayed.
+This can be used to create a typewriter effect by incrementing the value passed as n over time.
 
 ## Freeing Strings
 
