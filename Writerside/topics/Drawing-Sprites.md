@@ -27,7 +27,7 @@ First, you'll create an `AmphoraImage` pointer and ensure it's set to `NULL`.
 
 Sprites are created using the `Amphora_CreateSprite` function:
 ```C
-AmphoraImage *Amphora_CreateSprite(AmphoraImage **spr, const char *image_name, float x, float y, float scale, bool flip, bool stationary, Sint32 order);
+AmphoraImage *Amphora_CreateSprite(const char *image_name, float x, float y, float scale, bool flip, bool stationary, Sint32 order);
 ```
 Creating an `AmphoraImage` with `Amphora_CreateSprite` will automatically add it to the render list to be displayed.
 
@@ -98,13 +98,8 @@ If you do not wish to execute a callback function, pass `NULL` in C or `nullptr`
 
 Freeing sprites is done with the `Amphora_FreeSprite` function:
 ```C
-void free_sprite(AmphoraImage **spr);
+void free_sprite(AmphoraImage *spr);
 ```
 This will free all resources associated the specified `AmphoraImage` and reset the pointer to `NULL`.
-
-<warning>
-Note the <code>AmphoraImage **</code> here.
-As a general rule of thumb, functions that create or destroy Ampohra's opaque internal structures take pointers to pointers, while functions that read from or modify those structures take standard pointers.
-</warning>
 
 All existing images are freed automatically on exit, so it is only necessary to manually free images that you no longer need (ie. an enemy that the player defeated).

@@ -44,7 +44,7 @@ So a completed scene file for the MainMenu scene could look as so:
 Amphora_BeginScene(MainMenu)
 
 MainMenu_Init(void) {}
-MainMenu_Update(Uint64 frame, const InputState *input_state) {}
+MainMenu_Update(Uint32 frame, const InputState *input_state) {}
 MainMenu_Destroy(void) {}
 
 ```
