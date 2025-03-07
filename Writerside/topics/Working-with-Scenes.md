@@ -26,7 +26,7 @@ The functions require the following prototypes:
 
 ```C
 void {SceneName}_Init(void);
-void {SceneName}_Update(Uint64, const InputState *);
+void {SceneName}_Update(Uint32, const InputState *);
 void {SceneName}_Destroy(void);
 ```
 
