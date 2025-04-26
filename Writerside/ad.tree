@@ -16,6 +16,8 @@
     <toc-element topic="Drawing-a-Tilemap.md"/>
     <toc-element topic="Getting-Input.md"/>
     <toc-element topic="Playing-Sounds.md"/>
-    <toc-element topic="Saving-Loading-Data.md"/>
+	<toc-element topic="Particles-and-Emitters.md"/>
+	<toc-element topic="Sprite-FX.md"/>
+	<toc-element topic="Saving-Loading-Data.md"/>
     <toc-element topic="API-Reference.md"/>
 </instance-profile>
