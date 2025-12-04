@@ -10,35 +10,18 @@ An object in your game might have many framesets attached to it, for example, id
 
 ## Creating Sprites
 
-First, you'll create an `AmphoraImage` pointer and ensure it's set to `NULL`.
-
-<tabs>
-    <tab title="C">
-        <code-block lang="C">
-            AmphoraImage *my_img = NULL;
-        </code-block>
-    </tab>
-    <tab title="C++">
-        <code-block lang="C++">
-            AmphoraImage *my_img = nullptr;
-        </code-block>
-    </tab>
-</tabs>
-
-Sprites are created using the `Amphora_CreateSprite` function:
+First, you'll create an `AmphoraImage` pointer.
+Sprites are then created using the `Amphora::CreateSprite` function:
 ```C
-AmphoraImage *Amphora_CreateSprite(const char *image_name, float x, float y, float scale, bool flip, bool stationary, Sint32 order);
+AmphoraImage *Amphora::CreateSprite(const char *image_name, float x, float y, float scale, bool flip, bool stationary, Sint32 order);
 ```
-Creating an `AmphoraImage` with `Amphora_CreateSprite` will automatically add it to the render list to be displayed.
+Creating an `AmphoraImage` with `Amphora::CreateSprite` will automatically add it to the render list to be displayed.
 
-If `Amphora_CreateSprite` succeeds, the passed in `AmphoraImage` pointer will be set to the newly created `AmphoraImage`, and the pointer will be returned as well.
-If it fails, it will return `NULL` and the supplied pointer will not be modified.
+If Amphora::CreateSprite fails, it will return `NULL`.
 
 ### Description of Parameters {id="params_create_sprite"}
 
-- The `spr` parameter is a pointer to an `AmphoraImage` pointer.
-This pointer should be `NULL`, otherwise the function will simply return it as is and not create the new `AmphoraImage`.
-- The `image_name` parameter is the name of the image resource specified in `resources.h`.
+- The `image_name` parameter is the name of the image resource specified in `Resources.txt`.
 The `AmphoraImage` does not contain any texture data itself, it uses the image supplied here and draws portions of it based on the coordinates specified in a frameset.
 - The `x` and `y` parameters determine the initial position of the `AmphoraImage`.
 This will be the upper left corner.
@@ -53,10 +36,10 @@ For example, a health display would be stationary, an enemy monster would not.
 
 ## Creating Framesets
 
-Once an `AmphoraImage` is created, you'll need to add a frameset to it.
-This is done with the `Amphora_AddFrameset` function:
+Once an `AmphoraImage` is created, you'll need to add at least one frameset to it.
+This is done with the `Amphora::AddFrameset` function:
 ```C
-void Amphora_AddFrameset(AmphoraImage *spr, const char *name, Sint32 sx, Sint32 sy, Sint32 w, Sint32 h, float off_x, float off_y, Uint16 num_frames, Uint16 delay);
+void Amphora::AddFrameset(AmphoraImage *spr, const char *name, const char *override_img, Sint32 sx, Sint32 sy, Sint32 w, Sint32 h, float off_x, float off_y, Uint16 num_frames, Uint16 delay);
 ```
 
 ### Description of Parameters {id="params_frameset"}
@@ -64,6 +47,8 @@ void Amphora_AddFrameset(AmphoraImage *spr, const char *name, Sint32 sx, Sint32 
 - The `spr` parameter to which the created frameset should be attached.
 - The `name` parameter is the name of the frameset to be created.
 This must be unique among framesets attached to any given `AmphoraImage`, but different `AmphoraImage` instances can have framesets with identical names (ie. an `AmpohraImage` player1 cannot have two framesets both called idle, but player1 and player2 can each have a frameset called idle).
+- The `override_img` parameter is the name of an image resource to use instead of the one specified when creating the `AmphoraImage`.
+If this is `nullptr`, the image specified when creating the `AmphoraImage` will be used.
 - The `sx` and `sy` parameters are the upper left pixel of the first frame of the animation described by the frameset on the spritesheet named in the `AmphoraImage` `name` parameter.
 - The `w` and `h` parameters are the width and height of the frames for the described animation.
 <warning>
@@ -85,21 +70,21 @@ If your frameset is a static image that is not animated, this value does not mat
 
 There are two methods to set the active frameset for an `AmphoraImage`: `Amphora_SetFrameset`, and `Amphora_PlayOneshot`.
 ```C
-void Amphora_SetFrameset(AmphoraImage *spr, const char *name);
-void Amphora_PlayOneshot(AmphoraImage *spr, const char *name, void (*callback)(void));
+void Amphora::SetFrameset(AmphoraImage *spr, const char *name);
+void Amphora::PlayOneshot(AmphoraImage *spr, const char *name, void (*callback)(void));
 ```
 In both of these, `spr` is the `AmphoraImage` and `name` is the name of the frameset that's previously been created.
 
-The difference between the two is that `Amphora_SetFrameset` will loop the animation, while `Amphora_PlayOneshot` will play the animation once, holding on the last frame, and will execute a supplied callback function once the animation finishes.
-This callback function is a standard C function pointer to a function that takes no parameters and returns void, or it can be a non-trapping lambda if using C++.
-If you do not wish to execute a callback function, pass `NULL` in C or `nullptr` in C++.
+The difference between the two is that `Amphora::SetFrameset` will loop the animation, while `Amphora::PlayOneshot` will play the animation once, holding on the last frame, and will execute a supplied callback function once the animation finishes.
+This callback function takes no parameters and returns void.
+If you do not wish to execute a callback function, just pass `nullptr`.
 
 ## Freeing Sprites
 
-Freeing sprites is done with the `Amphora_FreeSprite` function:
+Freeing sprites is done with the `Amphora::FreeSprite` function:
 ```C
-void free_sprite(AmphoraImage *spr);
+void Amphora::FreeSprite(AmphoraImage *spr);
 ```
-This will free all resources associated the specified `AmphoraImage` and reset the pointer to `NULL`.
+This will free all resources associated the specified `AmphoraImage`.
 
-All existing images are freed automatically on exit, so it is only necessary to manually free images that you no longer need (ie. an enemy that the player defeated).
+All existing images are freed automatically on scene destroy, so it is only necessary to manually free images that you no longer need (ie. an enemy that the player defeated).

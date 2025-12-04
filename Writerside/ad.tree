@@ -6,7 +6,7 @@
                  name="Amphora Docs"
                   start-page="Amphora.md">
 
-    <toc-element topic="Amphora.md"/>
+	<toc-element topic="Amphora.md"/>
     <toc-element topic="Getting-Started.md"/>
     <toc-element topic="Configuring-a-Project.md"/>
     <toc-element topic="Working-with-Binary-Resources.md"/>
@@ -19,5 +19,7 @@
 	<toc-element topic="Particles-and-Emitters.md"/>
 	<toc-element topic="Sprite-FX.md"/>
 	<toc-element topic="Saving-Loading-Data.md"/>
-    <toc-element topic="API-Reference.md"/>
+	<toc-element topic="The-Event-System.md"/>
+	<toc-element topic="API-Reference.md"/>
+	<toc-element topic="Producing-Custom-Engine-Builds.md"/>
 </instance-profile>

@@ -1,31 +1,21 @@
 # Getting Started
 
-## Prerequisites
-
-Before getting started with Amphora, you will need to install Microsoft's vcpkg, as this is how Amphora manages its dependencies.
-Instructions on how to do this can be found [here](https://learn.microsoft.com/en-us/vcpkg/get_started/get-started).
-You'll need to follow the steps up through setting the VCPKG_ROOT environment variable.
-
-### Note for Linux Builds {collapsible="true"}
-
-If you intend to use Amphora's audio system on Linux, you'll need to ensure that the headers for your sound system are installed _before_ vcpkg builds SDL2_mixer.
-This can be accomplished using the following command on Debian/Ubuntu based systems:
-```Bash
-sudo apt install libasound2-dev libpulse-dev
-```
-
 ## Getting the Engine
 
-Amphora is distributed in source form.
-Releases can be downloaded as a tarball from the GitHub releases, or you can clone the latest dev branch:
-```Bash
-git clone https://github.com/calebstein1/amphora
-```
-The `src` directory is where code files are found, `include` is for headers, and `content` is for any assets your game will need.
-The engine source and header files are located in `src/engine` and `include/engine` respectively.
+Before developing your game, you'll need a copy of the Amphora engine.
+Releases can be downloaded using the `amphora` command line utility, or you can clone the latest dev branch from GitHub and build it yourself (see [](Producing-Custom-Engine-Builds.md)).
 
-Your game files should exist outside of the `engine` directories.
-Typically, you'll have multiple directories under `src` with which to organize your files (ie, `Scenes`, `Utils`, etc).
+## Creating a Project
+
+Once you've obtained a copy of the engine, you'll use the `amphora` utility to create a new blank project:
+```Bash
+amphora new MyGame
+```
+Inside the projejct, the `src` directory is where code files are found, `include` is for headers, `content` is for any assets your game will need, and `config` is for configuration files.
+
+Within `src/`, you'll find `Amphora.cpp` which is the entry point for your game.
+This file is not intended to be modified, and should be left as-is, as it forms the translation layer between the engine and your game code.
+The bulk of your game logic will be in `src/Scenes/`, though it's typical to have many directories under `src/`, (`src/Entities/`, `src/FX/`, etc.).
 
 ## Building the Project
 
