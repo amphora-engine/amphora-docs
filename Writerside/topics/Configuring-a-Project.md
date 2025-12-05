@@ -1,14 +1,15 @@
 # Configuring a Project
 
-## config.h
-
-Each Amphora game comes with several config files located in `config`.
+Amphora uses a combination of plain-text configuration files and headers to control game setup.
+These files can be found in `config`.
 
 - `Config.h`: Sets default window values, as well as the game name and author, and the API version.
 - `Keymap.txt`: Defines the default keymap for the game.
 - `Colors.txt`: Defines custom colors for use in your game.
 - `Resources.txt`: Defines the resources that will be loaded into the game.
-- `SceneList.txt`: Defines the scenes that will be loaded into the game.`
+- `SceneList.txt`: Defines the scenes that will be loaded into the game.
+
+The plain text files follow a simple macro-like syntax and are parsed at build time..
 
 ### Default Keymap
 

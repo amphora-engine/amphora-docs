@@ -11,7 +11,7 @@ Once you've obtained a copy of the engine, you'll use the `amphora` utility to c
 ```Bash
 amphora new MyGame
 ```
-Inside the projejct, the `src` directory is where code files are found, `include` is for headers, `content` is for any assets your game will need, and `config` is for configuration files.
+Inside the project, the `src` directory is where code files are found, `include` is for headers, `content` is for any assets your game will need, and `config` is for configuration files.
 
 Within `src/`, you'll find `Amphora.cpp` which is the entry point for your game.
 This file is not intended to be modified, and should be left as-is, as it forms the translation layer between the engine and your game code.

@@ -46,7 +46,7 @@ void Amphora::AddFrameset(AmphoraImage *spr, const char *name, const char *overr
 
 - The `spr` parameter to which the created frameset should be attached.
 - The `name` parameter is the name of the frameset to be created.
-This must be unique among framesets attached to any given `AmphoraImage`, but different `AmphoraImage` instances can have framesets with identical names (ie. an `AmpohraImage` player1 cannot have two framesets both called idle, but player1 and player2 can each have a frameset called idle).
+This must be unique among framesets attached to any given `AmphoraImage`, but different `AmphoraImage` instances can have framesets with identical names (ie. an `AmphoraImage` player1 cannot have two framesets both called idle, but player1 and player2 can each have a frameset called idle).
 - The `override_img` parameter is the name of an image resource to use instead of the one specified when creating the `AmphoraImage`.
 If this is `nullptr`, the image specified when creating the `AmphoraImage` will be used.
 - The `sx` and `sy` parameters are the upper left pixel of the first frame of the animation described by the frameset on the spritesheet named in the `AmphoraImage` `name` parameter.
@@ -68,7 +68,7 @@ If your frameset is a static image that is not animated, this value does not mat
 
 ## Selecting Framesets
 
-There are two methods to set the active frameset for an `AmphoraImage`: `Amphora_SetFrameset`, and `Amphora_PlayOneshot`.
+There are two methods to set the active frameset for an `AmphoraImage`: `Amphora::SetFrameset`, and `Amphora::PlayOneshot`.
 ```C
 void Amphora::SetFrameset(AmphoraImage *spr, const char *name);
 void Amphora::PlayOneshot(AmphoraImage *spr, const char *name, void (*callback)(void));

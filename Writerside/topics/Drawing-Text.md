@@ -61,7 +61,7 @@ It is only necessary to call `Amphora::FreeString` on any strings you no longer 
 
 ## The Typewriter Effect
 
-Amphora includes a built-in typewriter effect that can be used by setting a string's number of characters displayed to 0, and then using Amphora::TypeString.
+Amphora includes a built-in typewriter effect that can be used by setting a string's number of characters displayed to 0, and then using `Amphora::TypeString`.
 Amphora::TypeString optionally takes a callback function that will be called every time a character is displayed.
 In practice, this looks as follows:
 ```c++

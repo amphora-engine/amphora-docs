@@ -9,17 +9,17 @@ LOAD*(name, path)
 The `name` field will be used to refer to the resource in your game code, and the `path` is the relative path to the resource file.
 Here, `LOAD*` will be one of `LOADIMG`, `LOADFONT`, `LOADMAP`, `LOADSFX`, or `LOADMUSIC` depending on the type of resource you're loading.
 
-This is how a completed `Resourses.txt` file might look:
+This is how a completed `Resources.txt` file might look:
 ```C
-LOADIMG(Character, "content/img/character.png") \
-LOADIMG(Objects, "content/img/objects.png") \
+LOADIMG(Character, "content/img/character.png")
+LOADIMG(Objects, "content/img/objects.png")
 LOADIMG(Overworld, "content/img/overworld.png")
 
 LOADFONT(Roboto, "content/font/Roboto/Roboto-Regular.ttf")
 
 LOADMAP(Overworld, "content/maps/overworld.tmj")
 
-LOADSFX(leaves01, "content/sfx/leaves01.ogg") \
+LOADSFX(leaves01, "content/sfx/leaves01.ogg")
 LOADSFX(leaves02, "content/sfx/leaves02.ogg")
 
 LOADMUSIC(forest, "content/music/forest.ogg")

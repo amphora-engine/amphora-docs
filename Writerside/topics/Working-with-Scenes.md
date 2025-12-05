@@ -31,7 +31,7 @@ public:
     void init() override {}
     void update(Uint32 frame, const InputState *key_actions) override {}
     void destroy() override {}
-}
+};
 
 Amphora_RegisterScene(SceneName);
 ```
@@ -45,7 +45,7 @@ The `Amphora_RegisterScene` macro must be called for each scene class, otherwise
 
 ## Loading Scenes
 
-A scene is loaded using `Amphora_LoadScene(name)`.
+A scene is loaded using `Amphora::LoadScene(name)`.
 This will call the current scene's destroy function, free other allocated resources, then call the new scene's init function and begin running its update function.
 
 For example, to load level 1, it'd be as simple as:
