@@ -48,7 +48,7 @@ COLOR(Green, 0x00, 0xff, 0x00)
 COLOR(Blue, 0x00, 0x00, 0xff)
 COLOR(Sky, 0x87, 0xce, 0xeb)
 ```
-These colors can then be referenced by name within the `Amphora::Colors` namespace anywhere in your game that calls for an `SDL_Color`.
+These colors can then be referenced by name within the `Amphora::Colors` namespace anywhere in your game that calls for an `AmphoraColor`.
 
 For example:
 ```C++

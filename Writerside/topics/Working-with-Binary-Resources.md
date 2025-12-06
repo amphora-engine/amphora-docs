@@ -11,20 +11,24 @@ Here, `LOAD*` will be one of `LOADIMG`, `LOADFONT`, `LOADMAP`, `LOADSFX`, or `LO
 
 This is how a completed `Resources.txt` file might look:
 ```C
-LOADIMG(Character, "content/img/character.png")
-LOADIMG(Objects, "content/img/objects.png")
-LOADIMG(Overworld, "content/img/overworld.png")
+LOADIMG(Character, content/img/character.png)
+LOADIMG(Objects, content/img/objects.png)
+LOADIMG(Overworld, content/img/overworld.png)
 
-LOADFONT(Roboto, "content/font/Roboto/Roboto-Regular.ttf")
+LOADFONT(Roboto, content/font/Roboto/Roboto-Regular.ttf)
 
-LOADMAP(Overworld, "content/maps/overworld.tmj")
+LOADMAP(Overworld, content/maps/overworld.tmj)
 
-LOADSFX(leaves01, "content/sfx/leaves01.ogg")
-LOADSFX(leaves02, "content/sfx/leaves02.ogg")
+LOADSFX(leaves01, content/sfx/leaves01.ogg)
+LOADSFX(leaves02, content/sfx/leaves02.ogg)
 
-LOADMUSIC(forest, "content/music/forest.ogg")
+LOADMUSIC(forest, content/music/forest.ogg)
 ```
 <warning>
 Names must be unique within each resource type, but can be repeated across different resource types.
 For example, you may only have one image resource called <i>Overworld</i>, but you may have both an image and a map resource called <i>Overworld</i>.
+</warning>
+<warning>
+The paths are relative to the executable.
+The default CMakeLists.txt will copy the content directory to the executable's directory after building..
 </warning>
