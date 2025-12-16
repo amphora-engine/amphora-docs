@@ -1,23 +1,20 @@
 # Drawing Sprites
 
-Sprites in Amphora consist of two parts: an `AmphoraImage` pointer, and any number of framesets.
+Sprites in Amphora consist of two parts: a `Sprite` object, and any number of framesets.
 
-The `AmphoraImage` contains data such as the spritesheet resource to pull from, the coordinates, the scale factor, and the flip state of the current sprite.
+The `Sprite` contains data such as the spritesheet resource to pull from, the coordinates, the scale factor, and the flip state of the current sprite.
 
-A frameset describes an animated state that an `AmphoraImage` can be in.
+A frameset describes an animated state that a `Sprite` can be in.
 Each frameset specifies a unique name, the frames to be used in its animation, and the delay between animation frames.
 An object in your game might have many framesets attached to it, for example, idle, walking, jumping, falling, and attacking would all be separate framesets, each describing the animation for its state.
 
 ## Creating Sprites
 
-First, you'll create an `AmphoraImage` pointer.
-Sprites are then created using the `Amphora::CreateSprite` function:
-```C
-AmphoraImage *Amphora::CreateSprite(const char *image_name, float x, float y, float scale, bool flip, bool stationary, Sint32 order);
+First, you'll create a `Sprite` object.
+```c++
+Sprite Amphora::Sprite(const char *image_name, float x, float y, float scale, bool flip, bool stationary, bool transient, int order);
 ```
-Creating an `AmphoraImage` with `Amphora::CreateSprite` will automatically add it to the render list to be displayed.
-
-If Amphora::CreateSprite fails, it will return `NULL`.
+Creating a `Sprite` will automatically add it to the render list to be displayed.
 
 ### Description of Parameters {id="params_create_sprite"}
 
@@ -32,14 +29,15 @@ For example, a scale parameter of 2 would cause the image to be drawn with its w
 - The `stationary` parameter determines whether the image should be stationary.
 Similarly to strings, a stationary image is positioned relative to the window/screen edges and its position on screen will not change.
 For example, a health display would be stationary, an enemy monster would not.
+- The `transient` parameter works identically to how it works for strings; it controls whether hiding an image frees its memory or not.
 - The `order` parameter controls the draw order of all drawable objects, with higher numbers drawing on top of lower numbers.
 
 ## Creating Framesets
 
-Once an `AmphoraImage` is created, you'll need to add at least one frameset to it.
-This is done with the `Amphora::AddFrameset` function:
+Once a `Sprite` is created, you'll need to add at least one frameset to it.
+This is done with the `Amphora::Sprite::AddFrameset` function:
 ```C
-void Amphora::AddFrameset(AmphoraImage *spr, const char *name, const char *override_img, Sint32 sx, Sint32 sy, Sint32 w, Sint32 h, float off_x, float off_y, Uint16 num_frames, Uint16 delay);
+void Amphora::Sprite::AddFrameset(const char *name, const char *override_img, int sx, int sy, int w, int h, float off_x, float off_y, int num_frames, int delay);
 ```
 
 ### Description of Parameters {id="params_frameset"}
@@ -68,23 +66,19 @@ If your frameset is a static image that is not animated, this value does not mat
 
 ## Selecting Framesets
 
-There are two methods to set the active frameset for an `AmphoraImage`: `Amphora::SetFrameset`, and `Amphora::PlayOneshot`.
-```C
-void Amphora::SetFrameset(AmphoraImage *spr, const char *name);
-void Amphora::PlayOneshot(AmphoraImage *spr, const char *name, void (*callback)(void));
+There are two methods to set the active frameset for a `Sprite`: `Amphora::Sprite::SetFrameset`, and `Amphora::Sprite::PlayOneshot`.
+```c++
+void Amphora::Sprite::SetFrameset(const char *name);
+void Amphora::Sprite::PlayOneshot(const char *name, void (*callback)(void) = nullptr);
 ```
-In both of these, `spr` is the `AmphoraImage` and `name` is the name of the frameset that's previously been created.
+In both of these, `name` is the name of the frameset that's previously been created.
 
-The difference between the two is that `Amphora::SetFrameset` will loop the animation, while `Amphora::PlayOneshot` will play the animation once, holding on the last frame, and will execute a supplied callback function once the animation finishes.
+The difference between the two is that `Amphora::Sprite::SetFrameset` will loop the animation, while `Amphora::Sprite::PlayOneshot` will play the animation once, holding on the last frame, and will execute a supplied callback function once the animation finishes.
 This callback function takes no parameters and returns void.
-If you do not wish to execute a callback function, just pass `nullptr`.
 
 ## Freeing Sprites
 
-Freeing sprites is done with the `Amphora::FreeSprite` function:
-```C
-void Amphora::FreeSprite(AmphoraImage *spr);
-```
-This will free all resources associated the specified `AmphoraImage`.
-
-All existing images are freed automatically on scene destroy, so it is only necessary to manually free images that you no longer need (ie. an enemy that the player defeated).
+Freeing a sprite generally happens automatically and occurs in the same fashion as freeing a string.
+If the sprite is transient, it will be freed automatically when it's hidden with `Amphora::Sprite::Hide`.
+Otherwise, it will be freed automatically when the scene is changed.
+Any transient sprites will also be freed automatically on a scene change.
