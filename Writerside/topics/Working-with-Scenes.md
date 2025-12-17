@@ -28,9 +28,9 @@ private:
 public:
     static SceneName& instance();
     
-    void init() override {}
-    void update(Uint32 frame, const InputState *key_actions) override {}
-    void destroy() override {}
+    void Init() override {}
+    void Update() override {}
+    void Destroy() override {}
 };
 
 Amphora_RegisterScene(SceneName);
