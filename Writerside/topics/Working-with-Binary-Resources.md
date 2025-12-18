@@ -30,5 +30,5 @@ For example, you may only have one image resource called <i>Overworld</i>, but y
 </warning>
 <warning>
 The paths are relative to the executable.
-The default CMakeLists.txt will copy the content directory to the executable's directory after building..
+The default CMakeLists.txt will copy the content directory to the executable's directory after building.
 </warning>

@@ -19,8 +19,8 @@ Creating a `Sprite` will automatically add it to the render list to be displayed
 ### Description of Parameters {id="params_create_sprite"}
 
 - The `image_name` parameter is the name of the image resource specified in `Resources.txt`.
-The `AmphoraImage` does not contain any texture data itself, it uses the image supplied here and draws portions of it based on the coordinates specified in a frameset.
-- The `x` and `y` parameters determine the initial position of the `AmphoraImage`.
+The `Amphora::Sprite` does not contain any texture data itself, it uses the image supplied here and draws portions of it based on the coordinates specified in a frameset.
+- The `x` and `y` parameters determine the initial position of the `Amphora::Sprite`.
 This will be the upper left corner.
 If `stationary` is true, these values will be the distance from the window/screen edge to the image, with positive x and y values starting from the left and top edges, and negative x and y values starting from the right and bottom edges.
 - The `scale` parameter is used to scale the image drawn.
@@ -42,18 +42,17 @@ void Amphora::Sprite::AddFrameset(const char *name, const char *override_img, in
 
 ### Description of Parameters {id="params_frameset"}
 
-- The `spr` parameter to which the created frameset should be attached.
 - The `name` parameter is the name of the frameset to be created.
-This must be unique among framesets attached to any given `AmphoraImage`, but different `AmphoraImage` instances can have framesets with identical names (ie. an `AmphoraImage` player1 cannot have two framesets both called idle, but player1 and player2 can each have a frameset called idle).
-- The `override_img` parameter is the name of an image resource to use instead of the one specified when creating the `AmphoraImage`.
-If this is `nullptr`, the image specified when creating the `AmphoraImage` will be used.
-- The `sx` and `sy` parameters are the upper left pixel of the first frame of the animation described by the frameset on the spritesheet named in the `AmphoraImage` `name` parameter.
+This must be unique among framesets attached to any given `Amphora::Sprite`, but different `Amphora::Sprite` instances can have framesets with identical names (ie. an `Amphora::Sprite` player1 cannot have two framesets both called idle, but player1 and player2 can each have a frameset called idle).
+- The `override_img` parameter is the name of an image resource to use instead of the one specified when creating the `Amphora::Sprite`.
+If this is `nullptr`, the image specified when creating the `Amphora::Sprite` will be used.
+- The `sx` and `sy` parameters are the upper left pixel of the first frame of the animation described by the frameset on the spritesheet named in the `Amphora::Sprite` `name` parameter.
 - The `w` and `h` parameters are the width and height of the frames for the described animation.
 <warning>
 In any given animation, each frame must be of the same dimensions
 </warning>
 - The `off_x` and `off_y` parameters specify a pixel offset to be applied to the frames in an animation.
-These numbers will be subtracted from the position of the `AmphoraImage`.
+These numbers will be subtracted from the position of the `Amphora::Sprite`.
 Typically, these will be used to maintain the relative center of a sprite when switching between framesets of different sizes.
 For example, a sprite's idle animation may be 16x32 pixels, but the attack animation might be 32x32 pixels to accommodate a sword swing.
 In this case, switching from an idle state to an attack state would move the visible image to the right.

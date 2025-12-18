@@ -44,7 +44,7 @@ This will overwrite the old text with the new format string provided.
 
 ## Changing the Number of Characters Displayed
 
-You can change how many characters of a string are displayed with the `Amphora::SetCharsDisplayed` member function:
+You can change how many characters of a string are displayed with the `Amphora::String::SetCharsDisplayed` member function:
 ```c++
 void Amphora::String::SetCharsDisplayed(size_t n);
 ```
@@ -55,10 +55,10 @@ This will display only the first 'n' characters of the string.
 Freeing an `Amphora::String` generally happens automatically, but the process differs based on whether the string is transient or not.
 If a string is transient, it will be freed automatically when it is hidden with `Amphora::String::Hide`.
 If a string is not transient, it won't be freed until the next scene change.
-Any transient string still visible when a scene changen occurs will also be freed automatically.
+Any transient string still visible when a scene change occurs will also be freed automatically.
 
 ```c++
-void Amphora::String::HideString();
+void Amphora::String::Hide();
 ```
 
 ## The Typewriter Effect

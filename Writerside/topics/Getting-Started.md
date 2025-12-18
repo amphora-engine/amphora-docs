@@ -22,12 +22,12 @@ It is recommended to add `using namespace Amphora;` to the top of each source fi
 ## Building the Project
 
 Amphora uses CMake for builds.
-Assuming you have CMake and vcpkg installed, and the VCPKG_ROOT environment variable set, you should be able to build and debug your project easily using Visual Studio or any other CMake-compatible IDE.
+Assuming you have CMake installed, you should be able to build and debug your project easily using Visual Studio or any other CMake-compatible IDE.
 
 On Linux, you can also build from the command-line with the following commands:
 ```Bash
 mkdir -p build
 cd build
-cake ..
+cmake ..
 make
 ```

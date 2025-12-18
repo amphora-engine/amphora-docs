@@ -9,7 +9,7 @@ These files can be found in `config`.
 - `Resources.txt`: Defines the resources that will be loaded into the game.
 - `SceneList.txt`: Defines the scenes that will be loaded into the game.
 
-The plain text files follow a simple macro-like syntax and are parsed at build time..
+The plain text files follow a simple macro-like syntax and are parsed at build time.
 
 ### Default Keymap
 
