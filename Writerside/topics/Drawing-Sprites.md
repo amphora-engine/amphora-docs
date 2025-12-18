@@ -1,16 +1,16 @@
 # Drawing Sprites
 
-Sprites in Amphora consist of two parts: a `Sprite` object, and any number of framesets.
+Sprites in Amphora consist of two parts: a `Amphora::Sprite` object, and any number of framesets.
 
-The `Sprite` contains data such as the spritesheet resource to pull from, the coordinates, the scale factor, and the flip state of the current sprite.
+The `Amphora::Sprite` contains data such as the spritesheet resource to pull from, the coordinates, the scale factor, and the flip state of the current sprite.
 
-A frameset describes an animated state that a `Sprite` can be in.
+A frameset describes an animated state that a `Amphora::Sprite` can be in.
 Each frameset specifies a unique name, the frames to be used in its animation, and the delay between animation frames.
 An object in your game might have many framesets attached to it, for example, idle, walking, jumping, falling, and attacking would all be separate framesets, each describing the animation for its state.
 
 ## Creating Sprites
 
-First, you'll create a `Sprite` object.
+First, you'll create a `Amphora::Sprite` object.
 ```c++
 Sprite Amphora::Sprite(const char *image_name, float x, float y, float scale, bool flip, bool stationary, bool transient, int order);
 ```
