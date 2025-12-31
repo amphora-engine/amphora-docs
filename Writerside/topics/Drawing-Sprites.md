@@ -37,15 +37,13 @@ For example, a health display would be stationary, an enemy monster would not.
 Once a `Sprite` is created, you'll need to add at least one frameset to it.
 This is done with the `Amphora::Sprite::AddFrameset` function:
 ```C
-void Amphora::Sprite::AddFrameset(const char *name, const char *override_img, int sx, int sy, int w, int h, float off_x, float off_y, int num_frames, int delay);
+void Amphora::Sprite::AddFrameset(const char *name, int sx, int sy, int w, int h, float off_x, float off_y, int num_frames, int delay, const char *override_img = nullptr);
 ```
 
 ### Description of Parameters {id="params_frameset"}
 
 - The `name` parameter is the name of the frameset to be created.
 This must be unique among framesets attached to any given `Amphora::Sprite`, but different `Amphora::Sprite` instances can have framesets with identical names (ie. an `Amphora::Sprite` player1 cannot have two framesets both called idle, but player1 and player2 can each have a frameset called idle).
-- The `override_img` parameter is the name of an image resource to use instead of the one specified when creating the `Amphora::Sprite`.
-If this is `nullptr`, the image specified when creating the `Amphora::Sprite` will be used.
 - The `sx` and `sy` parameters are the upper left pixel of the first frame of the animation described by the frameset on the spritesheet named in the `Amphora::Sprite` `name` parameter.
 - The `w` and `h` parameters are the width and height of the frames for the described animation.
 <warning>
@@ -62,6 +60,8 @@ These will be read sequentially, left-to-right from the spritesheet, starting fr
 If your frameset is a static image that is not animated, you would set this to 1.
 - The `delay` parameter specifies the number of milliseconds between each animation frame change.
 If your frameset is a static image that is not animated, this value does not matter and can just be set to 0.
+- The `override_img` parameter is the name of an image resource to use instead of the one specified when creating the `Amphora::Sprite`.
+If this isn't specified, the image specified when creating the `Amphora::Sprite` will be used.
 
 ## Selecting Framesets
 
