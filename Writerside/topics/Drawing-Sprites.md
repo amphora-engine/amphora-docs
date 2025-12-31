@@ -12,7 +12,7 @@ An object in your game might have many framesets attached to it, for example, id
 
 First, you'll create a `Amphora::Sprite` object.
 ```c++
-Sprite Amphora::Sprite(const char *image_name, float x, float y, float scale, bool flip, bool stationary, bool transient, int order);
+Sprite Amphora::Sprite(const std::string& image_name, float x, float y, float scale, bool flip, bool stationary, bool transient, int order);
 ```
 Creating a `Sprite` will automatically add it to the render list to be displayed.
 
@@ -37,7 +37,7 @@ For example, a health display would be stationary, an enemy monster would not.
 Once a `Sprite` is created, you'll need to add at least one frameset to it.
 This is done with the `Amphora::Sprite::AddFrameset` function:
 ```C
-void Amphora::Sprite::AddFrameset(const char *name, int sx, int sy, int w, int h, float off_x, float off_y, int num_frames, int delay, const char *override_img = nullptr);
+void Amphora::Sprite::AddFrameset(const std::string& name, int sx, int sy, int w, int h, float off_x, float off_y, int num_frames, int delay, const std::string& override_img = "");
 ```
 
 ### Description of Parameters {id="params_frameset"}
@@ -67,8 +67,8 @@ If this isn't specified, the image specified when creating the `Amphora::Sprite`
 
 There are two methods to set the active frameset for a `Sprite`: `Amphora::Sprite::SetFrameset`, and `Amphora::Sprite::PlayOneshot`.
 ```c++
-void Amphora::Sprite::SetFrameset(const char *name);
-void Amphora::Sprite::PlayOneshot(const char *name, void (*callback)(void) = nullptr);
+void Amphora::Sprite::SetFrameset(const std::string& name);
+void Amphora::Sprite::PlayOneshot(const std::string& name, void (*callback)(void) = nullptr);
 ```
 In both of these, `name` is the name of the frameset that's previously been created.
 

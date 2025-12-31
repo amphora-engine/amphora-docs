@@ -7,7 +7,7 @@ Drawing text to the screen with Amphora requires two things: a font loaded using
 The first thing you'll want to do is create a new `Amphora::String`.
 The `Amphora::String` object's constructor has the following signature:
 ```c++
-String Amphora::String(const char *font_name, int pt, float x, float y, int order, SDL_Color color, bool stationary, bool transient, const char *fmt, ...);
+String Amphora::String(const std::string& font_name, int pt, float x, float y, int order, SDL_Color color, bool stationary, bool transient, const char *fmt, ...);
 ```
 Creating an `Amphora::String` will automatically add that string to the render list to be displayed.
 
