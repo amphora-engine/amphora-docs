@@ -7,9 +7,9 @@ Releases can be downloaded using the `amphora` command line utility, or you can 
 
 ## Creating a Project
 
-Once you've obtained a copy of the engine, you'll use the `amphora` utility to create a new blank project:
+Once you've obtained a copy of the engine, you'll want to clone the `amphora-engine/amphora-cpp` repository to create a new blank project:
 ```Bash
-amphora new MyGame
+git clone https://github.com/amphora-engine/amphora-cpp.git
 ```
 Inside the project, the `src` directory is where code files are found, `include` is for headers, `content` is for any assets your game will need, and `config` is for configuration files.
 
@@ -24,7 +24,7 @@ It is recommended to add `using namespace Amphora;` to the top of each source fi
 Amphora uses CMake for builds.
 Assuming you have CMake installed, you should be able to build and debug your project easily using Visual Studio or any other CMake-compatible IDE.
 
-On Linux, you can also build from the command-line with the following commands:
+On Linux or MacOS, you can also build from the command-line with the following commands:
 ```Bash
 mkdir -p build
 cd build
